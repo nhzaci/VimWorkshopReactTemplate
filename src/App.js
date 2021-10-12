@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import { parseStringIntoSnakeCase } from './utils/string'
+import { TextField } from '@mui/material'
+import AlertComponent from './components/Alert'
 
 function App() {
+  const [word, setWord] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className='App'>
+      <header className='App-header'>
+        <img src={logo} className='App-logo' alt='logo' />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <TextField
+            label='To Snake Case Word'
+            onChange={(e) => setWord(e.target.value)}
+            variant='filled'
+          />
+          <h1>To Snake Case</h1>
+          <h2>{parseStringIntoSnakeCase(word)}</h2>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <AlertComponent word={word} />
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
